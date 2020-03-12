@@ -1,0 +1,52 @@
+package com.cg.dao;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.cg.dto.RoomDTO;
+import com.cg.dto.UserDTO;
+import com.cg.dto.BookingDTO;
+import com.cg.dto.HotelDTO;
+
+@SuppressWarnings("deprecation")
+public class StaticDB {
+	private static List<UserDTO> userList=new ArrayList<UserDTO>();
+	private static List<RoomDTO> roomList=new ArrayList<RoomDTO>();
+	private static List<HotelDTO> hotelList=new ArrayList<HotelDTO>();
+	private static List<BookingDTO> bookingList=new ArrayList<BookingDTO>();
+	static
+	{
+		userList.add(new UserDTO(1001,"password1","HotelEmployee","user1","9912994098","ongole","user1@gmail.com"));
+		userList.add(new UserDTO(1002,"password2","HotelEmployee","user2","9912994097","ongole","user2@gmail.com"));
+		roomList.add(new RoomDTO(122,1,"g101","AC",1200.00,true) );
+		roomList.add(new RoomDTO(122,2,"g102","NAC",800.00,true) );
+		roomList.add(new RoomDTO(121,3,"g103","AC",1200.00,true) );
+		roomList.add(new RoomDTO(121,4,"g104","NAC",800.00,true) );
+		hotelList.add(new HotelDTO(121,"pune","pjr hotels","talwade","description1",1000.0,"9951187457","9912994098",4.5f,"pjr@gmail.com"));
+		hotelList.add(new HotelDTO(122,"pune","mvr hotels","talwade","description1",1000.0,"9951187457","9912994098",4.5f,"mvr@gmail.com"));
+		bookingList.add(new BookingDTO(1,3,1001,new Date(2020,3,12),new Date(2020,3,14),1,2,2400.0));
+		
+		
+	}
+	
+	/*	BookingDetails: booking_id(varchar(4)), room_id(varchar(4)),  
+	user_id(varchar(4)), booked_from (date), booked_to(date),
+	no_of_adults, no_of_children, amount(number(6,2))
+	*/
+	
+	public static List<UserDTO> getUserList() {
+		return userList;
+	}
+	public static void setUserList(List<UserDTO> userList) {
+		StaticDB.userList = userList;
+	}
+	public static List<RoomDTO> getRoomList() {
+		return roomList;
+	}
+	public static void setRoomList(List<RoomDTO> roomList) {
+		StaticDB.roomList = roomList;
+	}
+	
+
+}

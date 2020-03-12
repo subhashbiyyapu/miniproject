@@ -1,0 +1,37 @@
+package com.cg.service;
+
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.cg.dao.HotelEmployeeDAOImpl;
+import com.cg.dto.RoomDTO;
+
+public class HotelEmployeeServiceImpl {
+	 public String enableOrdisable(String room_name)
+	{
+		HotelEmployeeDAOImpl hdao=new  	HotelEmployeeDAOImpl();
+		List<RoomDTO> roomList=(ArrayList)hdao.fetchByHotelId( );
+		boolean flag;
+		String returnstring="";
+		boolean roomNotFound=false;
+		for(RoomDTO rdto:roomList)
+		{
+			if(rdto.getRoomNo().equals(room_name))
+			{  roomNotFound=true;
+				flag=rdto.isAvailability();
+				rdto.setAvailability(!flag);
+				returnstring= room_name+"'s availability is changed to "+(!flag);
+				
+			}
+		}
+		if(roomNotFound==false)
+		{
+			returnstring= room_name+"is not present in the hotel";
+		}
+		return returnstring;
+		
+	}
+
+}

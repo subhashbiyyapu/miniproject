@@ -1,0 +1,102 @@
+package com.cg.ui;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Scanner;
+
+import com.cg.dto.BookingDTO;
+import com.cg.dto.RoomDTO;
+import com.cg.service.HotelEmployeeService;
+import com.cg.service.HotelEmployeeServiceImpl;
+public class TestDemo {
+	
+	LocalDate  getDate()
+	{
+		
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter year");
+		int year=sc.nextInt();
+		System.out.println("enter month  from 1 to 12");
+		int month=sc.nextInt();;
+		System.out.println("enter day ");
+		int day =sc.nextInt();
+		LocalDate ld=LocalDate.of(year, month, day);
+	}
+
+	public static void main(String[] args) {
+		int hotelId=121;
+		Scanner sc=new Scanner(System.in);
+		System.out.println("1.Enable or Disable a Room\n2.Display all the rooms \n 3.book a room");
+		int choice=sc.nextInt();
+	    HotelEmployeeService he=new HotelEmployeeServiceImpl();
+	    HashMap <Integer,RoomDTO> roomHashMap=new HashMap<Integer,RoomDTO>();
+	  
+	    List<RoomDTO>  roomList=null;
+	    int roomChoice;
+	 
+		switch(choice)
+		{
+		case 1:
+		
+		
+		String room_name=sc.next();
+		String response=he.enableOrdisable(room_name);
+		System.out.println(response);
+		
+		
+		case 2:
+	 roomList=   he.displayRooms(hotelId, LocalDate.of(2020,3,13),  LocalDate.of(2020,3,14));
+			for(RoomDTO room:roomList)
+			{
+				System.out.println(room.getRoomNo()+"       "+room.isAvailability());
+			}
+			
+		case 3:
+      roomList=   he.displayRooms(hotelId, LocalDate.of(2020,3,13),  LocalDate.of(2020,3,14));
+			for(RoomDTO room:roomList)
+			{
+				System.out.println(room.getRoomId()+"   "+room.getRoomNo()+"       "+room.isAvailability());
+			}
+			
+			
+			while(true)
+			{
+			System.out.println("Enter room Id");
+			roomChoice=sc.nextInt();
+			for(RoomDTO room:roomList){
+		roomHashMap.put(room.getRoomId(),room);
+			}
+			RoomDTO tempRoom=roomHashMap.get(roomChoice);
+			if(tempRoom.isAvailability()==true)
+				break;
+			else
+			{
+				System.out.println("room is not available");
+			}
+		
+			}
+			
+			
+			System.out.println("enter no of adults");
+			int noOfAdult=sc.nextInt();
+			
+			System.out.println("enter no of children");
+			int noOfChildren=sc.nextInt();
+			
+			
+	      BookingDTO bookdto=new BookingDTO(hotelId,roomChoice,fromDate,toDate,noOfAdult,noOfChildren);
+	      
+				
+				
+		
+			
+		
+		}
+		
+		
+
+	
+
+	}
+
+}

@@ -1,0 +1,44 @@
+package com.cg.ui;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Scanner;
+
+import com.cg.dto.RoomDTO;
+import com.cg.service.HotelEmployeeService;
+import com.cg.service.HotelEmployeeServiceImpl;
+public class TestDemo {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("1.Enable or Disable a Room\n2.Display all the rooms ");
+		int choice=sc.nextInt();
+	    HotelEmployeeService he=new HotelEmployeeServiceImpl();
+		switch(choice)
+		{
+		case 1:
+		
+		System.out.println("enter room no");
+		String room_name=sc.next();
+		String response=he.enableOrdisable(room_name);
+		System.out.println(response);
+		
+		
+		case 2:
+			List<RoomDTO>  roomList=   he.displayRooms(121, LocalDate.of(2020,3,13),  LocalDate.of(2020,3,14));
+			for(RoomDTO room:roomList)
+			{
+				System.out.println(room.getRoomNo()+"       "+room.isAvailability());
+			}
+			
+			
+			
+		
+		}
+		
+		
+
+	
+
+	}
+
+}

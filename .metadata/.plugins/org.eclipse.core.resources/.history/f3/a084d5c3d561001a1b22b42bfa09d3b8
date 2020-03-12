@@ -1,0 +1,57 @@
+package com.cg.hbms.dao;
+
+import java.util.ArrayList;
+
+import java.util.List;
+
+import com.cg.hbms.dto.BookingDto;
+import com.cg.hbms.dto.RoomDto;
+
+
+
+public class HotelEmployeeDAOImpl  implements HotelEmployeeDAO{
+	
+	 public List<RoomDto> fetchRoomsByHotelId( int hotelId)
+	{
+		 
+		 List<RoomDto> roomlist= StaticDb.getRoomList();
+		 List<RoomDto> tempRoomList=new ArrayList<RoomDto>();
+		 for(RoomDto rdto :roomlist)
+		 {
+			 if((rdto.getHotelId()==hotelId))
+			 {
+			
+				 tempRoomList.add(rdto);
+			 }
+			 else
+			 {
+				
+			 }
+		 }
+		 return tempRoomList;
+	}
+	 
+	 
+		public List<BookingDto> fetchBookingdetails(int hotelId)
+		{
+			 List<BookingDto> bookingList= StaticDb.getBookingList();
+			 int index=0;
+			 for(BookingDto rdto :bookingList)
+			 {
+				 if(!(rdto.getHotelId()==hotelId))
+				 {
+					 bookingList.remove(index);
+				 }
+				 else
+				 {
+					 index++;
+				 }
+			 }
+			 return bookingList;
+
+		
+		}
+
+
+
+}

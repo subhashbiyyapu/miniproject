@@ -1,0 +1,38 @@
+package com.cg.dao;
+
+import java.util.ArrayList;
+
+import java.util.List;
+
+import com.cg.dto.RoomDTO;
+import com.cg.dto.UserDTO;
+import com.cg.dto.HotelDTO;
+
+public class StaticDB {
+	private static List<UserDTO> userList=new ArrayList<UserDTO>();
+	private static List<RoomDTO> roomList=new ArrayList<RoomDTO>();
+	private static List<HotelDTO> hotelList=new ArrayList<HotelDTO>();
+	static
+	{
+		userList.add(new UserDTO("121","password1","HotelEmployee","user1","9912994098","ongole","user1@gmail.com"));
+		userList.add(new UserDTO("122","password2","HotelEmployee","user2","9912994097","ongole","user2@gmail.com"));
+		roomList.add(new RoomDTO("121","1","g101","AC",1200.00,true) );
+		roomList.add(new RoomDTO("121","2","g102","NAC",800.00,true) );
+		roomList.add(new RoomDTO("121","3","g103","AC",1200.00,true) );
+		roomList.add(new RoomDTO("121","4","g104","NAC",800.00,true) );
+	}
+	public static List<UserDTO> getUserList() {
+		return userList;
+	}
+	public static void setUserList(List<UserDTO> userList) {
+		StaticDB.userList = userList;
+	}
+	public static List<RoomDTO> getRoomList() {
+		return roomList;
+	}
+	public static void setRoomList(List<RoomDTO> roomList) {
+		StaticDB.roomList = roomList;
+	}
+	
+
+}

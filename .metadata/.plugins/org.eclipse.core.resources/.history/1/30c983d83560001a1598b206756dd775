@@ -1,0 +1,51 @@
+package com.cg.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.cg.dto.BookingDTO;
+import com.cg.dto.RoomDTO;
+
+public class HotelEmployeeDAOImpl {
+	
+	 public List<RoomDTO> fetchByHotelId()
+	{int id=121;
+		 int index=0;
+		 List<RoomDTO> roomlist= StaticDB.getRoomList();
+		 for(RoomDTO rdto :roomlist)
+		 {
+			 if(!(rdto.getHotelId()==id))
+			 {
+				 roomlist.remove(index);
+			 }
+			 else
+			 {
+				 index++;
+			 }
+		 }
+		 return roomlist;
+	}
+	 
+	 
+		public List<BookingDTO> fetchBookingdetails(int hotelId)
+		{
+			 List<BookingDTO> bookingList= StaticDB.getBookingList();
+			 int index=0;
+			 for(BookingDTO rdto :bookingList)
+			 {
+				 if(!(rdto.getHotelId()==hotelId))
+				 {
+					 bookingList.remove(index);
+				 }
+				 else
+				 {
+					 index++;
+				 }
+			 }
+			 return bookingList;
+
+		
+		}
+
+
+}

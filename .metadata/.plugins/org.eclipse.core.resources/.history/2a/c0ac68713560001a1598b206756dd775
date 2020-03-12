@@ -1,0 +1,14 @@
+package com.cg.dao;
+
+import java.util.List;
+
+import com.cg.dto.BookingDTO;
+import com.cg.dto.RoomDTO;
+
+public interface HotelEmployeeDAO {
+	
+	List<RoomDTO> fetchByHotelId();
+	List<BookingDTO> fetchBookingdetails(int hotelId);
+	
+
+}

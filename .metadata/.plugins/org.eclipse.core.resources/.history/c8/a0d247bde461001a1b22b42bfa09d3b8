@@ -1,0 +1,17 @@
+package com.cg.hbms.service;
+
+import java.time.LocalDate;
+
+import java.util.HashMap;
+import java.util.List;
+
+import com.cg.hbms.dto.RoomDto;
+
+
+
+public interface HotelEmployeeService {
+	//String enableOrdisable(String room_name);
+HashMap<Integer,RoomDto>  displayRooms(int hoteld,LocalDate bookedFrom,LocalDate bookedTo);
+HashMap<Integer,RoomDto>  displayRoomsBasedOnType(int hoteld,LocalDate bookedFrom,LocalDate bookedTo,int RoomType);
+  
+}
